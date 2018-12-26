@@ -96,19 +96,19 @@ module.exports = {
     });
   },
 
-  showall: function(req, res, next) {
+  show: function(req, res, next) {
     User.find({}, function(err, users) {
       if (err) {
-        return res.status(500).json({'result': 'there was a problem on the database with showall'});
+        return res.status(500).json({'result': 'there was a problem on the database with show users'});
       }
       res.status(200).json(users);
     });
   },
 
-  dropall: function(req, res, next) {
+  drop: function(req, res, next) {
     User.deleteMany({}, function(err) {
       if (err) {
-        return res.status(500).json({'result': 'there was a problem on the database with dropall'});
+        return res.status(500).json({'result': 'there was a problem on the database with drop users'});
       }
       return res.status(200).json({'result': 'OK'});
     });

@@ -22,12 +22,12 @@ router.get('/info', verifyToken, function(req, res, next) {
   userController.info(req, res, next);
 });
 
-router.get('/dropall', function(req, res, next) {
-  userController.dropall(req, res, next);
+router.get('/drop', function(req, res, next) {
+  userController.drop(req, res, next);
 });
 
-router.get('/showall', function(req, res, next) {
-  userController.showall(req, res, next);
+router.get('/show', function(req, res, next) {
+  userController.show(req, res, next);
 });
 
 module.exports = router;

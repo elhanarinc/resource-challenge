@@ -9,12 +9,16 @@ var verifyToken = require('../middleware');
 router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json());
 
-router.get('/show', function(req, res, next) {
-  resourceController.show(req, res, next);
-});
-
 router.post('/insert', verifyToken, function(req, res, next) {
   resourceController.insert(req, res, next);
+});
+
+router.get('/drop', function(req, res, next) {
+  resourceController.drop(req, res, next);
+});
+
+router.get('/show', function(req, res, next) {
+  resourceController.show(req, res, next);
 });
 
 module.exports = router;

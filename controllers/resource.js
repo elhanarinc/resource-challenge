@@ -32,8 +32,17 @@ module.exports = {
         }
         var resource_array = results.map(function(result) {
           return result.array;
-        }).join(",");
+        }).join(',');
         return res.status(200).json({'resource': resource_array});
+    });
+  },
+
+  drop: function(req, res, next) {
+    Resource.deleteMany({}, function(err) {
+      if (err) {
+        return res.status(500).json({'result': 'there was a problem on the database with drop resource'});
+      }
+      return res.status(200).json({'result': 'OK'});
     });
   }
 }
