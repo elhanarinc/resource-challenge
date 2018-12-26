@@ -9,24 +9,28 @@ module.exports = {
       if (err) {
         return res.status(500).json({'result': 'there was a problem on the database'});
       } else if (user) {
+        // https://httpstatuses.com/422
         return res.status(422).json({'result': 'user was already registered'});
       } else {
-        var hashedPassword = bcrypt.hashSync(req.body.password, 8);
-
-        User.create({
-          name : req.body.name,
-          email : req.body.email,
-          password : hashedPassword,
-          order: 0
-        },
-        function(err, user) {
+        bcrypt.hash(req.body.password, 10, function(err, hash) {
           if (err) {
-            return res.status(500).json({'result': 'there was a problem adding the user to the database'});
+            return res.status(500).json({'result': 'something went wrong on hashing password'});
           }
-          var token = jwt.sign({id: user._id, name: user.name, email: user.email}, process.env.JWT_SECRET, {
-            expiresIn: 86400 // expires in 24 hours
+          User.create({
+            name : req.body.name,
+            email : req.body.email,
+            password : hash,
+            order: 0
+          },
+          function(err, user) {
+            if (err) {
+              return res.status(500).json({'result': 'there was a problem adding the user to the database'});
+            }
+            var token = jwt.sign({id: user._id}, process.env.JWT_SECRET, {
+              expiresIn: 86400 // expires in 24 hours
+            });
+            res.status(200).json({'auth': true, 'token': token});
           });
-          res.status(200).json({'auth': true, 'token': token});
         });
       }
     });
@@ -37,22 +41,27 @@ module.exports = {
       if (err) {
         return res.status(500).json({'result': 'there was a problem on the database'});
       } else if (!user) {
+        // https://httpstatuses.com/401
         return res.status(401).json({'auth': false, 'result': 'invalid email'});
       } else {
-        var passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
-        if (!passwordIsValid) {
-          return res.status(401).json({'auth': false, 'result':'password and email did not match'});
-        }
-        var token = jwt.sign({id: user._id, name: user.name, email: user.email}, process.env.JWT_SECRET, {
-          expiresIn: 86400 // expires in 24 hours
+        bcrypt.compare(req.body.password, user.password, function(err, result) {
+          if (err) {
+            return res.status(500).json({'result': 'something went wrong comparing hash'})
+          }
+          if (!result) {
+            return res.status(401).json({'auth': false, 'result':'password and email did not match'});
+          }
+          var token = jwt.sign({id: user._id}, process.env.JWT_SECRET, {
+            expiresIn: 86400 // expires in 24 hours
+          });
+          res.status(200).json({'auth': true, 'token': token});
         });
-        res.status(200).json({'auth': true, 'token': token});
       }
     });
   },
 
   info: function(req, res) {
-    User.findOne({'email': req.body.email}, function(err, user) {
+    User.findById(req.userid, {_id: 0, password: 0, __v: 0}, function(err, user) {
       if (err) {
         return res.status(500).json({'result': 'there was a problem finding specific user'});
       }

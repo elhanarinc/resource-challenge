@@ -1,12 +1,13 @@
 var express = require('express');
+var bodyParser = require('body-parser');
+
 var router = express.Router();
 
-var bodyParser = require('body-parser');
+var userController = require('../controllers/users');
+var verifyToken = require('../middleware');
 
 router.use(bodyParser.urlencoded({ extended: true }));
 router.use(bodyParser.json());
-
-var userController = require('../controllers/users');
 
 router.post('/register', function(req, res) {
   userController.register(req, res);
@@ -17,7 +18,7 @@ router.post('/login', function(req, res) {
 });
 
 // For Debug purposes
-router.get('/info', function(req, res) {
+router.get('/info', verifyToken, function(req, res) {
   userController.info(req, res);
 });
 
