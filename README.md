@@ -113,3 +113,8 @@ There are different endpoints for this API:
 * CI/CD: Codeship
 * Test framework: Mocha and Chai
 ```
+
+**References**
+1. https://medium.freecodecamp.org/securing-node-js-restful-apis-with-json-web-tokens-9f811a92bb52
+2. https://scotch.io/tutorials/test-a-node-restful-api-with-mocha-and-chai
+3. https://blog.codeship.com/heroku-github-nodejs-deployment/
