@@ -17,7 +17,7 @@ router.post('/login', function(req, res, next) {
   userController.login(req, res, next);
 });
 
-// For Debug purposes
+// for debug purposes
 router.get('/info', verifyToken, function(req, res, next) {
   userController.info(req, res, next);
 });

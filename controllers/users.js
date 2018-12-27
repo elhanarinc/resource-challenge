@@ -1,7 +1,7 @@
 require('dotenv').config();
 var User = require('../models/users');
 var jwt = require('jsonwebtoken');
-var bcrypt = require('bcryptjs');
+var bcrypt = require('bcrypt');
 
 module.exports = {
   register: function(req, res, next) {
@@ -65,6 +65,9 @@ module.exports = {
       if (err) {
         return next(err, null);
       }
+      else if (!result) {
+        return next({'result': 'error'}, null);
+      }
       var maxOrder = result.order;
       User.findById(req.userid, function(err, user) {
         if(err){
@@ -86,7 +89,7 @@ module.exports = {
     });
   },
 
-  // For Debug Purposes
+  // for debug purposes
   info: function(req, res, next) {
     User.findById(req.userid, {_id: 0, password: 0, __v: 0}, function(err, user) {
       if (err) {
@@ -113,4 +116,4 @@ module.exports = {
       return res.status(200).json({'result': 'OK'});
     });
   }
-};
+}

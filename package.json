@@ -3,16 +3,18 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node server.js",
-    "debug": "nodemon --inspect server.js"
+    "start": "NODE_ENV='prod' nodemon --inspect server.js",
+    "test": "NODE_ENV='test' mocha test --timeout 30000 --exit"
   },
   "dependencies": {
     "bcrypt": "^3.0.3",
-    "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
+    "chai": "^4.2.0",
+    "chai-http": "^4.2.0",
     "dotenv": "^6.2.0",
     "express": "^4.16.4",
     "jsonwebtoken": "^8.4.0",
+    "mocha": "^5.2.0",
     "mongoose": "^5.4.0",
     "nodemon": "^1.18.9"
   }

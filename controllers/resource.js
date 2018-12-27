@@ -25,6 +25,7 @@ module.exports = {
     });
   },
 
+  // for debug purposes
   show: function(req, res, next) {
     Resource.find({}).sort({'order': 1}).exec(function(err, results) {
         if (err) {
@@ -32,7 +33,8 @@ module.exports = {
         }
         var resource_array = results.map(function(result) {
           return result.array;
-        }).join(',');
+        });
+        var resource_array = [].concat.apply([], resource_array);
         return res.status(200).json({'resource': resource_array});
     });
   },

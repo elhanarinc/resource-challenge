@@ -13,11 +13,12 @@ router.post('/insert', verifyToken, function(req, res, next) {
   resourceController.insert(req, res, next);
 });
 
+// for debug purposes
 router.get('/drop', function(req, res, next) {
   resourceController.drop(req, res, next);
 });
 
-router.get('/show', function(req, res, next) {
+router.get('/show', verifyToken, function(req, res, next) {
   resourceController.show(req, res, next);
 });
 
