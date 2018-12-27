@@ -1,10 +1,15 @@
 {
   "name": "zeplin-challenge",
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "An expressjs project",
   "private": true,
   "scripts": {
     "start": "NODE_ENV='prod' nodemon --inspect server.js",
     "test": "NODE_ENV='test' mocha test --timeout 30000 --exit"
+  },
+  "engines": {
+    "node": "10.14.2",
+    "npm": "6.4.1"
   },
   "dependencies": {
     "bcrypt": "^3.0.3",
