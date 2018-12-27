@@ -106,9 +106,10 @@ There are different endpoints for this API:
 
 **Useful information about project:**
 ```
-* API URL: to_be_written
+* API URL: https://zeplin-challenge.herokuapp.com/
+* Web Server: Heroku
 * Database: MongoDB Atlas
 * App Framework: Node.js/Express.js
-* CI/CD: to_be_written
+* CI/CD: Codeship
 * Test framework: Mocha and Chai
 ```
