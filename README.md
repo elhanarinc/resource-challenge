@@ -21,6 +21,7 @@ In order to use API, you need a mongodb instance which could be on local your ma
 * Test replica of `resource`
 
 I have used an `.env` file for the project in order to seperate `test` and `production` environments and sample configuration for sample `.env` file:
+
 ```
 DB_CONN_USERNAME=user
 DB_CONN_PASS=password
@@ -35,7 +36,6 @@ DB_COLL_USERS_TEST=users-test
 DB_COLL_USERS_PROD=users
 
 JWT_SECRET=sample-jwt-secret
-
 ```
 
 Below are the commands that is need for running the API:
