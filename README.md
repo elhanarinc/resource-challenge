@@ -1,7 +1,7 @@
-# Zeplin Challenge
+# Nodejs Challenge
 [ ![Codeship Status for elhanarinc/zeplin-challenge](https://app.codeship.com/projects/934fa2a0-ebd4-0136-7732-1e7f26f7d3eb/status?branch=master)](https://app.codeship.com/projects/319916)
 
-Zeplin coding challenge written with Node.js/Express.js Framework.
+Coding challenge written with Node.js/Express.js Framework.
 
 This project assumes you had already installed these tools:
 1. [node.js](https://nodejs.org/en/)
