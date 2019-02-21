@@ -1,5 +1,4 @@
 # Nodejs Challenge
-[ ![Codeship Status for elhanarinc/zeplin-challenge](https://app.codeship.com/projects/934fa2a0-ebd4-0136-7732-1e7f26f7d3eb/status?branch=master)](https://app.codeship.com/projects/319916)
 
 Coding challenge written with Node.js/Express.js Framework.
 
